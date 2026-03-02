@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      devices: {
+        Row: {
+          api_key: string
+          created_at: string
+          device_fingerprint: string
+          device_name: string
+          id: string
+          is_active: boolean
+          last_seen_at: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          api_key?: string
+          created_at?: string
+          device_fingerprint: string
+          device_name: string
+          id?: string
+          is_active?: boolean
+          last_seen_at?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          api_key?: string
+          created_at?: string
+          device_fingerprint?: string
+          device_name?: string
+          id?: string
+          is_active?: boolean
+          last_seen_at?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -121,6 +157,65 @@ export type Database = {
           },
         ]
       }
+      transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          description: string | null
+          device_id: string
+          flag_reason: string | null
+          id: string
+          is_flagged: boolean
+          merchant: string | null
+          nonce: string
+          raw_notification: string | null
+          source_app: string | null
+          transaction_time: string
+          transaction_type: Database["public"]["Enums"]["transaction_type"]
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          description?: string | null
+          device_id: string
+          flag_reason?: string | null
+          id?: string
+          is_flagged?: boolean
+          merchant?: string | null
+          nonce: string
+          raw_notification?: string | null
+          source_app?: string | null
+          transaction_time?: string
+          transaction_type: Database["public"]["Enums"]["transaction_type"]
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          description?: string | null
+          device_id?: string
+          flag_reason?: string | null
+          id?: string
+          is_flagged?: boolean
+          merchant?: string | null
+          nonce?: string
+          raw_notification?: string | null
+          source_app?: string | null
+          transaction_time?: string
+          transaction_type?: Database["public"]["Enums"]["transaction_type"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_device_id_fkey"
+            columns: ["device_id"]
+            isOneToOne: false
+            referencedRelation: "devices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -131,6 +226,7 @@ export type Database = {
     Enums: {
       task_priority: "low" | "medium" | "high" | "urgent"
       task_status: "backlog" | "todo" | "in_progress" | "done"
+      transaction_type: "debit" | "credit"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -260,6 +356,7 @@ export const Constants = {
     Enums: {
       task_priority: ["low", "medium", "high", "urgent"],
       task_status: ["backlog", "todo", "in_progress", "done"],
+      transaction_type: ["debit", "credit"],
     },
   },
 } as const

@@ -3,11 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, CheckSquare, FolderKanban, LogOut, Plus } from "lucide-react";
+import { LayoutDashboard, CheckSquare, FolderKanban, LogOut, Wallet, Smartphone } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/finance", label: "Finance", icon: Wallet },
+  { to: "/devices", label: "Perangkat", icon: Smartphone },
+  { to: "/dashboard", label: "Tasks Overview", icon: LayoutDashboard },
   { to: "/tasks", label: "Tugas", icon: CheckSquare },
   { to: "/projects", label: "Proyek", icon: FolderKanban },
 ];
