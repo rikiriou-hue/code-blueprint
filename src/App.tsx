@@ -8,6 +8,8 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Tasks from "./pages/Tasks";
 import Projects from "./pages/Projects";
+import FinancialDashboard from "./pages/FinancialDashboard";
+import DeviceManagement from "./pages/DeviceManagement";
 import AppLayout from "./components/AppLayout";
 import NotFound from "./pages/NotFound";
 
@@ -21,11 +23,13 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/" element={<Navigate to="/finance" replace />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={<AppLayout><Dashboard /></AppLayout>} />
             <Route path="/tasks" element={<AppLayout><Tasks /></AppLayout>} />
             <Route path="/projects" element={<AppLayout><Projects /></AppLayout>} />
+            <Route path="/finance" element={<AppLayout><FinancialDashboard /></AppLayout>} />
+            <Route path="/devices" element={<AppLayout><DeviceManagement /></AppLayout>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
