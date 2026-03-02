@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { CheckSquare } from "lucide-react";
+import { Wallet } from "lucide-react";
 
 const Auth = () => {
   const { user, loading, signIn, signUp } = useAuth();
@@ -21,7 +21,7 @@ const Auth = () => {
   const [registerPassword, setRegisterPassword] = useState("");
 
   if (loading) return <div className="flex min-h-screen items-center justify-center"><div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" /></div>;
-  if (user) return <Navigate to="/dashboard" replace />;
+  if (user) return <Navigate to="/finance" replace />;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,10 +48,10 @@ const Auth = () => {
       <div className="w-full max-w-md space-y-8">
         <div className="flex flex-col items-center gap-2">
           <div className="flex items-center gap-2 text-primary">
-            <CheckSquare className="h-8 w-8" />
-            <span className="text-2xl font-bold tracking-tight text-foreground">TaskFlow</span>
+            <Wallet className="h-8 w-8" />
+            <span className="text-2xl font-bold tracking-tight text-foreground">FinTrack</span>
           </div>
-          <p className="text-muted-foreground text-sm">Kelola proyek dan tugas dengan mudah</p>
+          <p className="text-muted-foreground text-sm">Realtime financial tracking dari perangkat Android Anda</p>
         </div>
 
         <Card className="glass shadow-lg">
