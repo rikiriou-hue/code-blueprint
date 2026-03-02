@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, CheckSquare, FolderKanban, LogOut, Wallet, Smartphone } from "lucide-react";
+import { LayoutDashboard, CheckSquare, FolderKanban, LogOut, Wallet, Smartphone, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -26,8 +26,8 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       {/* Sidebar */}
       <aside className="fixed inset-y-0 left-0 z-30 flex w-60 flex-col border-r border-border bg-card">
         <div className="flex items-center gap-2 px-5 py-5">
-          <CheckSquare className="h-6 w-6 text-primary" />
-          <span className="text-lg font-bold tracking-tight">TaskFlow</span>
+          <Wallet className="h-6 w-6 text-primary" />
+          <span className="text-lg font-bold tracking-tight">FinTrack</span>
         </div>
 
         <nav className="flex-1 space-y-1 px-3 py-2">
