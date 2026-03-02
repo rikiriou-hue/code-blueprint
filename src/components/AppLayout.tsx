@@ -3,8 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, CheckSquare, FolderKanban, LogOut, Wallet, Smartphone, Shield } from "lucide-react";
+import { LayoutDashboard, CheckSquare, FolderKanban, LogOut, Wallet, Smartphone, Shield, Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/hooks/useTheme";
 
 const navItems = [
   { to: "/finance", label: "Finance", icon: Wallet },
@@ -17,6 +18,7 @@ const navItems = [
 export default function AppLayout({ children }: { children: ReactNode }) {
   const { user, loading, signOut } = useAuth();
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   if (loading) return <div className="flex min-h-screen items-center justify-center"><div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full" /></div>;
   if (!user) return <Navigate to="/auth" replace />;
@@ -49,7 +51,14 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           })}
         </nav>
 
-        <div className="border-t border-border p-3">
+        <div className="border-t border-border p-3 space-y-2">
+          <button
+            onClick={toggleTheme}
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+          >
+            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {theme === "dark" ? "Light Mode" : "Dark Mode"}
+          </button>
           <div className="flex items-center gap-3 px-3 py-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
               {user.email?.[0]?.toUpperCase() ?? "U"}
